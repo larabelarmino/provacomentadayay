@@ -3,7 +3,7 @@ var file = process.argv[2] // PROCESS.ARGV PEGA OS ARGUMENTOS INSERIDOS AO EXECU
 var extensao = file.split('.')[file.split('.').length-1] //FILE(VARIVAVEL COM NOME DO ARQUIVO) SPLIT(FUNÇÃO PRA CORTAR STRINGS)
 //->ARGUMENTO INSERIDO: VAI CORTAR A PARTIR DO PRIMEIRO '.', ATE O FIM. ->ESTAMOS PEGANDO A EXTENSÃO DO ARQUIVO
 var numeros = []; //CRIANDO O VETOR QUE ARMAZENARÁ A RESPOSTA
-
+GFZQSHGZFQGSF
 function json() //FUNÇÃO PARA CASO A VARIAVEL EXTENSÃO SEJA "json"
 {
 //(EMBAIXO) OBJETO FS SENDO CHAMADO COM SEU MÉTODO READFILE(USADA PARA LER ARQUIVOS E PASSADA COM CERTOS PARAMETROS)
@@ -54,25 +54,27 @@ function Processar() // FUNÇÃO QUE VAI PROCESSAR TODO O CÓDIGO. CHAMADA A PAR
 {
   numeros = numeros.sort(function(a, b){return a-b});//ORGANIZA OS NÚMEROS
 var inicio = numeros[0];//DEFINE UMA VARIÁVEL PARA OS INICIOS DOS INTERVALOS E A ATRIBUI COMO A PRIMEIRA POSIÇÃO DO VETOR
-var fim = [];
-var resultado = "";
+var fim = [];//DEFINE UMA VARIAVEL PARA O FINAL DOS INTERVALOS
+var resultado = "";//DEFINE UMA VARIAVEL PARA ARMAZENAR O RESULLTADO
 for(var i = 0; i < numeros.length;  i++)
 {
-	if(numeros[i + 1] - numeros[i] != 1)
+	if(numeros[i + 1] - numeros[i] != 1)//CHECA SE O PRÓXIMO NÚMERO VEM DEPOIS DO ATUAL
 	{
-       		fim = numeros[i];
-       		if(fim == inicio)
+       		fim = numeros[i];//DEFINE A VARIAVEL DO FINAL DE INTERVALO COMO O NUMERO ATUAL
+       		if(fim == inicio)//CHECA DE O INTERVALO SÓ TEM UM NÚMERO
        		{
-       			resultado += "[" + inicio + "]";
+       			resultado += "[" + inicio + "]";//ESCREVE O ÚNICO NÚMERO DO INTERVALO NA VARIAVEL RESULTADO
        		}
-       		else {
-       			resultado += "[" + inicio + "-" + fim + "]";	
+       		else {//O INTERVALOS TEM MAIS DE UM NÚMERO
+       			resultado += "[" + inicio + "-" + fim + "]";//ESCREVE OS NÚMEROS DO INTERVALO NA VARIAVEL RESULTADO	
        		}
-       		inicio = numeros[i+1];
+       		inicio = numeros[i+1];//ATRIBUI A VARIÁVEL DE INICIO PARA O NÚMERO SEGUINTE
 	}
 }
+//(EMBAIXO) OBJETO FS SENDO CHAMADO COM SEU MÉTODO WRITEFILE(USADA PARA ESCREVER EM ARQUIVOS E PASSADA COM CERTOS PARAMETROS)
+//O MÉTODO WRITEFILE É CHAMADO: "writeFile(nomearquivo, conteúdo, função(argumentos){codigo})
 fs.writeFile('resultado.json', JSON.stringify(resultado), function (err) {
-	if (err) return console.log(err);
-	console.log('Concluido');
+	if (err) return console.log(err);//CASO HAJA ALGUM ERRO, A FUNÇÃO É INTERROMPIDA E ESSE IF É EXECUTADO
+	console.log('Concluido');//CASO OCORRA TUDO BEM, ESCREVE ISSO NA TELA
 });
 }
